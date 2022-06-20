@@ -1,13 +1,15 @@
 name: Rohit Bandaru
 description: Deep Learning Researcher
-avatar: https://raw.githubusercontent.com/rohitbandaru/blog/main/images/rohit.jpg
+avatar: https://raw.githubusercontent.com/rohitbandaru/blog/master/images/rohit.jpg
 
 footer-links:
   email:  rb696@cornell.edu
   github: RohitBandaru
   instagram:
   linkedin: Rohit-Bandaru
-  twitter: RohitBandaru
+  twitter:
+
+google_analytics: UA-204393187-1
 
 url:  RohitBandaru.github.io
 baseurl: "/blog"
@@ -26,7 +28,3 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
-
-remote_theme: pages-themes/cayman@v0.2.0
-plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
