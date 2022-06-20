@@ -146,7 +146,7 @@ The main problem with DeepCluster is that it requires periodically clustering th
 ## [SwAV](https://arxiv.org/abs/2006.09882)
 {% include image.html width=500 url="../../../images/self_supervised_learning/swav.png" description="SwAV" source="https://arxiv.org/abs/2006.07733"%}
 
-SwAV extends on DeepCluster to be online, while also taking inspiration from contrastive SSL methods.
+SwAV extends on DeepCluster to be online, while also taking inspiration from contrastive SSL methods. Two augmentations of an image are passed to an encoder. These representations are then assigned prototypes. There are K prototypes, which are vectors of the same representation as the encoding.
 
 # Conclusion
 There are many approaches to self supervised learning, however there are common elements. There are contrastive losses, data augmentation, bootstrapping, projection heads, and sometimes negative samples.
