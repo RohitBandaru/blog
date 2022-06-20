@@ -1,11 +1,9 @@
 ---
 layout: post
 title: Self-Supervised Learning  -  Getting more out of data
-published: false
 ---
-## DRAFT: publishing early draft, this is still a work in progress
 
-Yann LeCun describes self-supervised learning as the next big challenge in the field of AI. How does it work?
+Yann LeCun [describes](https://ai.facebook.com/blog/self-supervised-learning-the-dark-matter-of-intelligence/) self-supervised learning as the next big challenge in the field of AI. How does it work?
 Self-supervised learning (SSL) is a specific type of unsupervised learning. It aims to learn from large datasets of unlabeled data to enable building more robust models in different domains such as vision and NLP.
 
 For many computer vision problems, it is a common practice to pretrain the model on a supervised learning task. For example, there are [many](https://keras.io/api/applications/) neural networks that are pretrained to do image classification on ImageNet. However, self-supervised learning has recently been shown to outperform supervised pretraining learning on certain tasks. SSL is an active area of research with heavy involvement from top AI labs in Google, Facebook, Deepmind, and academia. Rather than focusing on the details of SSL architectures, we will explore the intuitions on why it works and what is needed.
@@ -19,7 +17,7 @@ We are experimenting with the simple example of pretraining on ImageNet and eval
 
 # Motivations
 ## Data
-Self-supervised learning does not need labels. The amount of unlabeled generally far exceeds the amount of labeled data. SSL can leverage large amounts of unlabeled data to build powerful models. Although most research does not use datasets larger than ImageNet, there are real world applications of using larger unlabeled datasets. For example, Facebook/Meta can train the [SEER](https://ai.facebook.com/blog/seer-the-start-of-a-more-powerful-flexible-and-accessible-era-for-computer-vision/) model on billions of Instagram images.
+Self-supervised learning does not need labels. The amount of unlabeled data generally far exceeds the amount of labeled data. SSL can leverage large amounts of unlabeled data to build powerful models. Although most research does not use datasets larger than ImageNet, there are real world applications of using larger unlabeled datasets. For example, Facebook/Meta can train the [SEER](https://ai.facebook.com/blog/seer-the-start-of-a-more-powerful-flexible-and-accessible-era-for-computer-vision/) model on billions of Instagram images.
 
 ## Generalizability
 If you train a model on image classification, it may not perform as well on non-classification tasks. This is because only part of the image's information is needed to classify it. A self-supervised learning algorithm may be able to use more of the information in the data.
@@ -32,7 +30,7 @@ It is common to think that unsupervised / self-supervised learning is only usefu
 In research, there are comparisons between training on ImageNet images and labels with supervised learning and ImageNet with only images for self-supervised learning. Although the motivation for SSL is often framed as being able to use more data, in this case, the size of the dataset is the same. The ability to use larger unlabeled datasets is just a side benefit of SSL.
 
 # Vision vs NLP
-Self-supervised learning has been long applied in NLP, but as Yann LeCun and Ishan Misra point out in [5], it is much harder to apply to vision. In NLP, language models are often trained with self supervision. Given a some text, you can mask a word and try to predict it given the rest of the text. There is a limited vocabulary, so you can assign a probability to each word. This is the basis of many popular NLP methods.
+Self-supervised learning has been long applied in NLP, but as Yann LeCun and Ishan Misra point [out](https://ai.facebook.com/blog/self-supervised-learning-the-dark-matter-of-intelligence/), it is much harder to apply to vision. In NLP, language models are often trained with self supervision. Given a some text, you can mask a word and try to predict it given the rest of the text. There is a limited vocabulary, so you can assign a probability to each word. This is the basis of many popular NLP methods.
 
 {% include image.html url="../../../images/self_supervised_learning/nlp.png" description="Predicting masked words in NLP"%}
 
@@ -41,7 +39,7 @@ Self-supervised learning has been long applied in NLP, but as Yann LeCun and Ish
 The analogue for vision is to mask a patch of an image and try to fill it in. However, because there is an intractable number of possible ways to fill in an image, you can't compute a probability for each one. There can also be a large number of possible solutions. For example, in the image above, there is many facial expressions the dog could have. The NLP approach is straight forward but cannot be directly applied to vision.
 
 # Pretext Task
-The earlier approaches to self-supervised learning focused on training the network on a pretext task. This task would not require labels in the label. The labels will be made up through the task. In RotNet [1], each image is rotated by 0, 90, 180, or 270 degrees, and a network is trained to predict the rotation. In Jigsaw [2], the image is split up into patches and scrambled like a jigsaw puzzle. A network is then trained to solve the puzzle by predicting the permutation.
+The earlier approaches to self-supervised learning focused on training the network on a pretext task. This task would not require labels in the label. The labels will be made up through the task. In [RotNet](https://arxiv.org/abs/2012.01985), each image is rotated by 0, 90, 180, or 270 degrees, and a network is trained to predict the rotation. In [Jigsaw](https://arxiv.org/abs/1603.09246), the image is split up into patches and scrambled like a jigsaw puzzle. A network is then trained to solve the puzzle by predicting the permutation.
 
 {% include image.html url="../../../images/self_supervised_learning/rotnet.png" description="RotNet, SSL by predicting rotations" source="https://arxiv.org/abs/1803.07728"%}
 
@@ -87,11 +85,11 @@ $$
 
 The $$s$$ function is modeled by $$f_k$$ a log bilinear model. $$W_k$$ is linear transforms the context vector, which can then be compared with the encoding $$z$$.
 
-To apply this to vision, the image is split up into 7x7 patches (with 50% overlap) which will be considered the observations. Each patch is encoded by a CNN (ResNet without pretraining). If the encoding returns at 1024 dimensional vector, the encoded image will have a size of 7x7x1024. An autoregressive model (PixelCNN or PixelRNN[6]) is applied to the encodings of the patches. For 1D data like audio, an RNN/LSTM scan be used. The self-supervised task in this case is predicting which patch generated each context vector. Refer to the PixelRNN paper for more information on autoregressive models and PixelCNN [6]. The final representation is computed by mean pooling the encodings into a single 1024 dimensional vector. This can then be used for downstream tasks, like image classification.
+To apply this to vision, the image is split up into 7x7 patches (with 50% overlap) which will be considered the observations. Each patch is encoded by a CNN (ResNet without pretraining). If the encoding returns at 1024 dimensional vector, the encoded image will have a size of 7x7x1024. An autoregressive model ([PixelCNN](https://arxiv.org/abs/1606.05328) or [PixelRNN](https://arxiv.org/abs/1601.06759)) is applied to the encodings of the patches. For 1D data like audio, an RNN/LSTM scan be used. The self-supervised task in this case is predicting which patch generated each context vector. Refer to the PixelRNN paper for more information on autoregressive models and PixelCNN. The final representation is computed by mean pooling the encodings into a single 1024 dimensional vector. This can then be used for downstream tasks, like image classification.
 
 Why do we need the autoregressive model? We could optimize the InfoNCE loss using the 7x7 encodings. The self supervised task here is predicting the next context vector given a sequence of context vectors. This is similar to predicting the next patch of an image given all the previous patches. But rather predict the patch, which as we discussed is too difficult, we just predict a lower dimensional vector. Without this autoregressive constraint, we are just optimizing for generating unique embeddings for each patch and ignoring the relation between the patches. The InfoNCE loss is just ensuring that the predictions are correct.
 
-Why not just mask out the current context / observation? The architecture for this may be a masked fully connected layer that learns the context vector for each observation, while excluding the connection to the observation itself. Or there could be two PixelCNNs, one from the left and one from the right. We can then concatenate these two context vectors and possibly add additional neural network layers on top of it. Both methods would be more computationally expensive and complex, but likely still feasible. This would be bidirectional model for images similar to BERT [].  This idea may be explored in other research papers or, it may be an open idea to try.
+Why not just mask out the current context / observation? The architecture for this may be a masked fully connected layer that learns the context vector for each observation, while excluding the connection to the observation itself. Or there could be two PixelCNNs, one from the left and one from the right. We can then concatenate these two context vectors and possibly add additional neural network layers on top of it. Both methods would be more computationally expensive and complex, but likely still feasible. This would be bidirectional model for images similar to [BERT](https://arxiv.org/abs/1810.04805).  This idea may be explored in other research papers or, it may be an open idea to try.
 
 ## [SimCLR](https://arxiv.org/abs/2002.05709)
 SimCLR is a method from Google Brain which takes a different approach for self-supervised learning of image representations. The basis of SimCLR is image augmentations. Image augmentation has long been used in supervised learning. The augmentations are transformations applied to the image and cropping, color change, and rotation. The idea is that these transformations do not change the content of the image and the network will learn to ignore and be invariant to these transformations. In supervised learning, data augmentation is used to just increase the size of the dataset for a supervised task like classification. Many SSL methods including SimCLR make invariance to the augmentation the actual learning objective. The augmented images are fed into an encoder to get the representation. These representations are then learned to be close of augmentations of the same image.
@@ -124,11 +122,15 @@ An interesting property of self-supervised trained encoders, is how the scale in
 One issue with SimCLR is its reliance on huge batch sizes. The best results come from a batch size of 4096. It needs many negative samples to be effective. This makes the network inefficient to train. Other approaches attempt to address this problem.
 
 ## [BYOL](https://arxiv.org/abs/2006.07733)
-BYOL is a paper from Deepmind that aims to remove the need for negative samples. There are two networks: a target encoder and a source encoder. The target network's weights are an moving average of the source encoder. Similar to SimCLR, augmented versions of an image are passed through the encoders. Unlike, SimCLR the loss does not use negative examples so there is no need for large batch sizes.
+BYOL is a paper from Deepmind that aims to remove the need for negative samples. There are two networks: a target network and an online network. The target network's weights are an exponential moving average of the online encoder. Similar to SimCLR, augmented versions of an image are passed through the encoders. Unlike SimCLR, the loss does not use negative examples so there is no need for large batch sizes. There is a projection head on top of the online encoder. The online encoder is used for downstream tasks.
 
 {% include image.html url="../../../images/self_supervised_learning/byol.png" description="BYOL architecture" source="https://arxiv.org/abs/2006.07733"%}
 
-There is a projection head on top of the source encoder.
+Bootstrapping is a poorly defined word used in machine learning. It can mean simultaneously optimizing two objectives that depend on each. In BYOL, that refers to the two encoders.
+
+BYOL is able to learn useful representations without collapse because only the parameters of the online encoder are optimized. The online encoder can't learn to output a constant because it is following the representations of the target encoder. The bootstrapping ensures that the trivial solution is avoided.
+
+BYOL is a non-contrastive method of SSL. However one criticism of BYOL is that batch normalization causes implicit contrastive learning by leaking information between batch elements. However, in a [follow up paper](https://arxiv.org/pdf/2010.10241.pdf), the authors show that replacing batch normalization with group normalization and weight standardization leads to comparable performance.
 
 # Clustering
 
@@ -144,34 +146,7 @@ The main problem with DeepCluster is that it requires periodically clustering th
 ## [SwAV](https://arxiv.org/abs/2006.09882)
 {% include image.html width=500 url="../../../images/self_supervised_learning/swav.png" description="SwAV" source="https://arxiv.org/abs/2006.07733"%}
 
-SwAV extends on DeepCluster to be online, while also taking inspiration from contrative SSL methods.
+SwAV extends on DeepCluster to be online, while also taking inspiration from contrastive SSL methods. Two augmentations of an image are passed to an encoder. These representations are then assigned prototypes. There are K prototypes, which are vectors of the same representation as the encoding.
 
 # Conclusion
 There are many approaches to self supervised learning, however there are common elements. There are contrastive losses, data augmentation, bootstrapping, projection heads, and sometimes negative samples.
-
-
-
-
-
-# Sources
-[1] Johnson, J. Emmanuel, et al. "RotNet: Fast and Scalable Estimation of Stellar Rotation Periods Using Convolutional Neural Networks." arXiv preprint arXiv:2012.01985 (2020).
-
-[2] Noroozi, Mehdi, and Paolo Favaro. "Unsupervised learning of visual representations by solving jigsaw puzzles." European conference on computer vision. Springer, Cham, 2016.
-
-[3] Henaff, Olivier. "Data-efficient image recognition with contrastive predictive coding." International Conference on Machine Learning. PMLR, 2020.
-
-[4] Van Oord, Aaron, Nal Kalchbrenner, and Koray Kavukcuoglu. "Pixel recurrent neural networks." International Conference on Machine Learning. PMLR, 2016.
-
-[5] Chen, Ting, et al. "A simple framework for contrastive learning of visual representations." International conference on machine learning. PMLR, 2020.
-
-[6] Caron, Mathilde, et al. "Unsupervised learning of visual features by contrasting cluster assignments." arXiv preprint arXiv:2006.09882 (2020).
-
-[] Caron, Mathilde, et al. "Deep clustering for unsupervised learning of visual features." Proceedings of the European Conference on Computer Vision (ECCV). 2018.
-
-[7] Grill, Jean-Bastien, et al. "Bootstrap your own latent: A new approach to self-supervised learning." arXiv preprint arXiv:2006.07733 (2020).
-
-[8] https://lilianweng.github.io/lil-log/2019/11/10/self-supervised-learning.html
-
-[9] https://ai.facebook.com/blog/self-supervised-learning-the-dark-matter-of-intelligence/
-
-https://slideslive.com/38938406/the-infonce-loss-in-selfsupervised-learning
