@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-I currently work at Amazon as an ML engineer. I am passionate about deep learning research.
+I currently work at Google as a Machine Learning Software Engineer.
 
 ### More Information
 
@@ -14,3 +14,5 @@ For more information on my background and projects: [rohitbandaru.github.io/](ht
 Feel free to contact me to discuss AI/ML research!
 
 [roh.bandaru@gmail.com](mailto:roh.bandaru@gmail.com)
+
+All opinions and content are my own and do not reflect my employer.

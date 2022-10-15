@@ -25,7 +25,7 @@ html, body {
 
 h1, h2, h3, h4, h5, h6 {
   color: #1EB74D;
-  font-family: Open Sans;
+  font-family: Raleway;
 
   line-height: 1.7;
   margin: 1em 0 15px;
@@ -39,11 +39,11 @@ h1, h2, h3, h4, h5, h6 {
 // Blog post content
 body {
   color: $darkGray;
-  font-family: Merriweather;
+  font-family: Open Sans;
 }
 
 p {
-  line-height: 36px;
+  line-height: 30px;
   margin-bottom: 30px;
 }
 
@@ -251,7 +251,6 @@ nav {
 //
 
 .posts > .post {
-  padding-bottom: 2em;
   border-bottom: 1px solid $lightGray;
 }
 
@@ -274,10 +273,6 @@ nav {
     margin-top: 10px;
   }
 
-  .read-more {
-    text-transform: uppercase;
-    font-size: 15px;
-  }
 }
 
 .wrapper-footer {
