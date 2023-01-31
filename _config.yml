@@ -27,3 +27,7 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+
+tags:
+    output: true
+    permalink: tags/:path/

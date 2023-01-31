@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Self-Supervised Learning  -  Getting more out of data
+tags: computer-vision self-supervised-learning 
+
 ---
 
 Yann LeCun [describes](https://ai.facebook.com/blog/self-supervised-learning-the-dark-matter-of-intelligence/) self-supervised learning as the next big challenge in the field of AI. How does it work?

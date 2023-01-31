@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Knowledge Distillation as Self-Supervised Learning
-tags: [paper-review, self-supervised-learning, knowledge-distillation]
+tags: paper-review self-supervised-learning knowledge-distillation computer-vision
 ---
 
 Self-supervised learning (SSL) methods have been shown to effectively train large neural networks with unlabeled data. These networks can produce useful image representations that can exceed the performance of supervised pretraining on downstream tasks. However, SSL is not effective with smaller models. This limits applications where computational power is limited, such as edge devices. Knowledge distillation (KD) is a popular method to train a smaller student network from a larger and more powerful teacher network. The [SEED](https://arxiv.org/abs/2101.04731) paper by Fang et al., published in ICLR 2021, applies knowledge distillation to self-supervised learning to pretrain smaller neural networks without supervision. In this post, we will discuss self-supervised learning and knowledge distillation and how they are unified in SEED.
