@@ -2,7 +2,9 @@
 layout: post
 title: Domain Adaptation
 tags: computer-vision
+image: ../../../images/domain_adaptation/framework.png
 ---
+
 Machine learning performance depends on the dataset that it is trained on. Datasets are imperfect, so problems in the data affect the models. One type of problem is domain shift. This means that a model trained to learn a task on one dataset, may not be able to perform the same task on a slightly different dataset. 
 
 Say you train a model to detect dogs in outdoor settings like public parks. It may perform very well on test images of dogs in outdoor places. However, that model may not function well when trying to detect dogs indoors, although the task itself is identical. This is a problem because the background of the image should not matter since you are just trying to detect dogs.

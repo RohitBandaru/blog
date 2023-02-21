@@ -2,6 +2,7 @@
 layout: post
 title: Pruning Neural Networks
 tags: applied-ml
+image: ../../../images/pruning/weights_vs_neurons.png
 ---
 
 Much of the success of deep learning has come from building larger and larger neural networks. This allows these models to perform better on various tasks, but also makes them more expensive to use. Larger models take more storage space which makes them harder to distribute. Larger models also take more time to run and can require more expensive hardware. This is especially a concern if you are productionizing a model for a real-world application.

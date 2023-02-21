@@ -2,6 +2,7 @@
 layout: post
 title: Scaling Deep Learning
 tags: applied-ml
+image: ../../../images/scaling_ml/data_parallelism_(2).png
 ---
 
 Many of the state-of-the-art results in deep learning are achieved using multiple GPUs. For some of the largest and most data-intensive ML models, it can take months or even years to train on one CPU or GPU. Training is sped up by scaling to large numbers of GPUs/TPUs. Some neural networks are too large to even fit on one GPU. For example, training large language models like BERT can easily exceed the available memory on a single [GPU](https://github.com/google-research/bert/blob/master/README.md#out-of-memory-issues).

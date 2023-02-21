@@ -1,6 +1,20 @@
-name: Rohit Bandaru
-description: Machine Learning Person
-avatar: https://raw.githubusercontent.com/rohitbandaru/blog/master/images/rohit.jpg
+# SEO
+title: Machine Learning Blog
+description: Artificial intelligence research blog covering many topics related to machine learning, computer vision, and deep learning
+author:
+  name: Rohit Bandaru
+  twitter: rohit_bandaru
+  image: https://raw.githubusercontent.com/rohitbandaru/blog/master/images/rohit.jpg
+twitter:
+  username: rohit_bandaru
+  card: summary_large_image
+social:
+  name: Rohit Bandaru
+  links:
+    - https://twitter.com/rohit_bandaru
+    - https://www.linkedin.com/in/Rohit-Bandaru
+    - https://github.com/RohitBandaru
+    - https://rohitbandaru.github.io/
 
 footer-links:
   email:  roh.bandaru@gmail.com
@@ -20,6 +34,9 @@ kramdown:
 gems:
   - jekyll-sitemap
   - jekyll-feed
+
+plugins:
+  - jekyll-seo-tag
 
 exclude:
   - Gemfile
