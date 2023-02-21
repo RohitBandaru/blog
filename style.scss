@@ -288,6 +288,13 @@ footer {
   position: relative;
 }
 
+aside {
+  background: $lightGray;
+  margin: 1.8em .8em;
+  border-radius: 3px;
+	padding: 1rem;
+}
+
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";

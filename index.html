@@ -20,6 +20,8 @@ layout: default
         </span>
         <p></p>
         {{ post.content | markdownify | truncatewords: 48, " ..."}}<a href="{{ site.baseurl }}{{ post.url }}">read more</a>
+        <br/>
+        <i>Posted on {{ post.date | date: "%b %d, %Y" }}</i>
       </div>
     
     
