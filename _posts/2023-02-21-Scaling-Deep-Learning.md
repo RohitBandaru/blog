@@ -114,7 +114,9 @@ Instead of splitting the model into layers, we can split the layers themselves. 
 
 ![Screenshot 2023-02-21 at 11.25.13 AM.png](../../../images/scaling_ml/Screenshot_2023-02-21_at_11.25.13_AM.png)
 
-The input X has to be completely copied for each split of the model. The layer is split into two halves. The splits of the model are then aggregated in the last layers of the model. Splitting the tensors themselves offer some benefits. The latency is reduced since you can fit more layers in a GPU. This is parallel computation instead of serialized computation.
+The input X has to be completely copied for each split of the model. The layer is split into two halves. The splits of the model are then aggregated in the last layers of the model. Splitting the tensors themselves offers some benefits. The latency is reduced since you can fit more layers on a GPU. This is parallel computation instead of serialized computation. You don’t have to worry about scheduling to minimize idle time.
+
+An issue with this approach is that the activations are also separated, so you are learning a different model architecture. There is an additional cost in concatenating $Y_1$ and $Y_2$ for both GPUs. The Megatron-LM architecture is designed to reduce the cost of communicating between GPUs.
 
 # Conclusion
 
